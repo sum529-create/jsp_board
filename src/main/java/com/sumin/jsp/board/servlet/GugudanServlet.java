@@ -15,9 +15,15 @@ public class GugudanServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=utf-8");
 
-        int dan = 8;
-        int i = 1;
-        
-        resp.getWriter().append("안녕!ㅁㅁ");
+        // /gugudan?dan=n
+        int dan = Integer.parseInt(req.getParameter("dan"));
+        // /gugudan?dan=n&limit=x
+        int limit = Integer.parseInt(req.getParameter("limit"));
+
+        resp.getWriter().append(String.format("<h1>%d</h1>\n", dan));
+        for(int i =1; i<=limit; i++){
+            resp.getWriter().append(String.format("<div>%d * %d</div>", dan, i, dan * i));
+        }
+
     }
 }
