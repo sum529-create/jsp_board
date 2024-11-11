@@ -2,6 +2,7 @@ package com.sumin.jsp.board.servlet;
 
 import com.sumin.jsp.board.Rq;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +22,13 @@ public class GugudanServlet extends HttpServlet {
         // /gugudan?dan=n&limit=x
 //        int limit = Integer.parseInt(req.getParameter("limit"));
         int limit = rq.getIntParam("limit", 9);
+
+        req.setAttribute("dan", dan);
+        req.setAttribute("limit", limit);
+        req.setAttribute("number", 10);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/gugudan2.jsp");
+        dispatcher.forward(req, resp);
 
 //        resp.getWriter().append(String.format("<h1>%d</h1>\n", dan));
         rq.appendBody(String.format("<h1>%d단</h1>\n", dan));
